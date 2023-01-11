@@ -3,12 +3,6 @@ import { postClient } from "../repositories/clients.repository.js";
 export async function postClientsController(req,res) {
 
     const { name, address, phone} = req.body;
-
-    //name não pode estar vazio ⇒ nesse caso, deve retornar status 400
-    if (!name || !address) {
-      res.status(400).send("name ou endereco vazio");
-      return;
-    }
   
     if(phone.length !==10 && phone.legnth != 11){
       res.status(400).send("name ou endereco vazio");

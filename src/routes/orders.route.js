@@ -7,6 +7,6 @@ const ordersRouter = Router();
 
 ordersRouter.post("/order",schemaValidation(ordersSchema), postOrderController);
 ordersRouter.get("/orders",getOrderController);
-ordersRouter.get("/:id/orders",getIdOrderController);
+ordersRouter.get("/orders/:id",getIdOrderController);
 
 export default ordersRouter;
