@@ -10,7 +10,7 @@ export const cakesSchema = joi.object({
 export const clientsSchema = joi.object({
   name: joi.string().required(),
   address: joi.string().required(),
-  phone: joi.number().integer().max(11).min(10).required(),
+  phone: joi.string().required(),
 });
 
 export const ordersSchema = joi.object({
