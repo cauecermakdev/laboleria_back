@@ -11,9 +11,8 @@ async function nameExist(name) {
     [name]
   );
 
-  const nameExist = nameList.rows[0];
+  const nameExist = nameList?.rows[0];
 
-  console.log("nameExist ", nameExist);
   if (nameExist) {
     return true;
   } else {
