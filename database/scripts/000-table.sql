@@ -1,0 +1,33 @@
+
+CREATE TABLE "cakes" (
+	"id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(50) NOT NULL,
+	"price" NUMERIC NOT NULL,
+	"image" VARCHAR NOT NULL,
+    "description" TEXT NOT NULL
+);
+
+CREATE TABLE "clients" (
+	"id" SERIAL PRIMARY KEY,
+	"name" VARCHAR(50) NOT NULL,
+ 	"adress" VARCHAR(100) NOT NULL,
+	"phone" VARCHAR(15) NOT NULL
+);
+
+
+CREATE TABLE "orders" (
+	"id" SERIAL PRIMARY KEY,
+	"clientId" INTEGER NOT NULL,
+ 	"cakeId" INTEGER NOT NULL,
+	"quantity" INTEGER NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL,
+	"totalPrice" NUMERIC NOT NULL, 
+
+	CONSTRAINT "FK_CLIENT" FOREIGN KEY ("clientId")
+		REFERENCES clients("id")
+		ON DELETE CASCADE,
+	CONSTRAINT "FK_CAKE" FOREIGN KEY ("cakeId")
+		REFERENCES cakes("id")
+		ON DELETE CASCADE
+
+);

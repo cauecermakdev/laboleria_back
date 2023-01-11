@@ -1,0 +1,20 @@
+#!/bin/bash
+
+createDatabase () {
+  sudo su -c "psql -c \"CREATE DATABASE $1\";" postgres;
+}
+
+destroyDatabase () {
+  sudo su -c "psql -c \"DROP DATABASE $1\";" postgres;
+}
+
+runScripts () {
+  for f in scripts/*; do
+    echo "Executando script $f...";
+    sudo su -c "psql -d $1 -f $f" postgres;
+  done
+}
+
+enterPostgresCli () {
+  sudo su -c "psql -d $1" postgres;
+}

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source src/functions;
+
+DATABASE=$(cat src/database);
+
+
+enterPostgresCli $DATABASE;
