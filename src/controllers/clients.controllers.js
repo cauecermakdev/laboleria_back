@@ -17,8 +17,29 @@ export async function postClientsController(req, res) {
   }
 }
 
+async function existIdTable(id, table) {
+
+  const list = await connection.query(
+    `SELECT * FROM ${table} t WHERE t.id = ($1)`,
+    [id]
+  );
+
+  const exist = list.rows[0];
+
+  if (exist) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 export async function getClientOrdersController(req, res) {
   const clientId = req.params.id;
+
+  if (!(await existIdTable(clientId, "clients"))) {
+    res.status(404).send("client doesnt exist");
+    return;
+  }
 
   try {
     const result = await getClientOrder(clientId);

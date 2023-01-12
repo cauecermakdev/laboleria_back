@@ -90,16 +90,13 @@ export async function getIdOrderController(req, res) {
   const id = req.params.id;
   let result = {};
 
-  if(!await existIdTable(id,"clients")){
-    res.status(404).send("nao existe client com tal id");
-    return;
-  }
+
 
   result = await getIdOrder(id);
 
   if (result === null) {
     console.log("entra undefined");
-    res.status(404).send("id vazio");
+    res.status(404).send("id vazio"); 
     return;
   }
 
