@@ -7,9 +7,6 @@ import {
 } from "../repositories/orders.repository.js";
 
 async function existIdTable(id, table) {
-  console.log("exist");
-
-  console.log(id);
 
   const list = await connection.query(
     `SELECT * FROM ${table} t WHERE t.id = ($1)`,
@@ -92,6 +89,10 @@ export async function getOrderController(req, res) {
 export async function getIdOrderController(req, res) {
   const id = req.params.id;
   let result = {};
+
+  if(!await existIdTable(id,"clients")){
+    res.status(404).send("nao existe client com tal id");
+  }
 
   result = await getIdOrder(id);
 
