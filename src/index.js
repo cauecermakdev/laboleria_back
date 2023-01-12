@@ -4,8 +4,6 @@ import dotenv from "dotenv";
 import route from "./indexRoutes.js";
 dotenv.config();
 
-console.log("entra indexjs")
-
 const app = express();
 app.use(express.json());
 app.use(cors());

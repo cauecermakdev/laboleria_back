@@ -1,8 +1,6 @@
 import connection from "../database/database.js";
 import { postNewCake } from "../repositories/cakes.repository.js";
 
-console.log("entra cakes controllers")
-
 async function nameExist(name) {
   console.log("nameExist function");
 
@@ -11,8 +9,9 @@ async function nameExist(name) {
     [name]
   );
 
-  const nameExist = nameList?.rows[0];
+  const nameExist = nameList.rows[0];
 
+  console.log("nameExist ", nameExist);
   if (nameExist) {
     return true;
   } else {
@@ -21,7 +20,6 @@ async function nameExist(name) {
 }
 
 export async function postCakes(req, res) {
-  console.log("entra post cakes")
   const { name, price, image, description } = req.body;
 
   if (!name || name.length < 2) {
@@ -45,9 +43,9 @@ export async function postCakes(req, res) {
   //validar link com joi
 
   try {
-    const { newCake } = await postNewCake(name, price, image, description);
-    console.log("newcake", newCake);
-    res.send(newCake.rows).status(200);
+    await postNewCake(name, price, image, description);
+
+    res.sendStatus(200);
   } catch (err) {
     res.status(500).send(err.message);
   }

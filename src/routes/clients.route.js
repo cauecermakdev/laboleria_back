@@ -14,7 +14,7 @@ clientsRouter.post(
 );
 clientsRouter.get(
   "/clients/:id/orders",
-  schemaValidation(ordersSchema),
+
   getClientOrdersController
 );
 
