@@ -92,6 +92,7 @@ export async function getIdOrderController(req, res) {
 
   if(!await existIdTable(id,"clients")){
     res.status(404).send("nao existe client com tal id");
+    return;
   }
 
   result = await getIdOrder(id);
